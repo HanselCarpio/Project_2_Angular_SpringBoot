@@ -21,6 +21,7 @@ public class RolController {
     public List<Rol> list() {
         //¿reglas de negocio?
         //if...es admin
+        
         return service.listAll();
     }
 

@@ -1,9 +1,7 @@
 package com.example.labspringboot.service;
 
 import com.example.labspringboot.domain.Rol;
-import com.example.labspringboot.domain.Users;
 import com.example.labspringboot.repository.RolRepository;
-import com.example.labspringboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
