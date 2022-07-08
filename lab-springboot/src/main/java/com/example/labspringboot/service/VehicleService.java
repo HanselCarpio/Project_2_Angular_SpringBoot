@@ -1,8 +1,8 @@
 package com.example.labspringboot.service;
 
 
-import com.example.labspringboot.domain.Users;
-import com.example.labspringboot.repository.UserRepository;
+import com.example.labspringboot.domain.Vehicle;
+import com.example.labspringboot.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,20 +11,20 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserService {
+public class VehicleService {
 
     @Autowired
-    private UserRepository repository;
+    private VehicleRepository repository;
 
-    public List<Users> listAll() {
+    public List<Vehicle> listAll() {
         return repository.findAll();
     }
 
-    public void save(Users user) {
-        repository.save(user);
+    public void save(Vehicle vehicle) {
+        repository.save(vehicle);
     }
 
-    public Users get(int id) {
+    public Vehicle get(int id) {
         return repository.findById(id).get();
     }
 

@@ -3,7 +3,7 @@ package com.example.labspringboot.domain;
 import javax.persistence.*;
 
 @Entity
-public class User{
+public class Users{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int iduser;
@@ -15,15 +15,15 @@ public class User{
     private String password;
     private char state;
     @ManyToOne
-    @JoinColumn(name = "IDrol")
-    private Rol rol;
+    @JoinColumn(name = "idrol")
+    private Rol idrol;
 
-    public User() {
+    public Users() {
     }
 
-    public User(int iduser, Rol rol, String name, String dni, int age, String telephone, String email, String password, char state) {
+    public Users(int iduser, Rol idrol, String name, String dni, int age, String telephone, String email, String password, char state) {
         this.setIduser(iduser);
-        this.setRol(rol);
+        this.setIdrol(idrol);
         this.setName(name);
         this.setDni(dni);
         this.setAge(age);
@@ -41,12 +41,12 @@ public class User{
         this.iduser = iduser;
     }
 
-    public Rol getRol() {
-        return rol;
+    public Rol getIdrol() {
+        return idrol;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setIdrol(Rol rol) {
+        this.idrol = idrol;
     }
 
     public String getName() {
@@ -116,7 +116,7 @@ public class User{
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", state=" + state +
-                ", rol=" + rol +
+                ", rol=" + idrol +
                 '}';
     }
 }

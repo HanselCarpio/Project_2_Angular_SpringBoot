@@ -1,9 +1,9 @@
 package com.example.labspringboot.service;
 
+import com.example.labspringboot.domain.Reservation;
 import com.example.labspringboot.domain.Rol;
-import com.example.labspringboot.domain.Users;
+import com.example.labspringboot.repository.ReservationRepository;
 import com.example.labspringboot.repository.RolRepository;
-import com.example.labspringboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,20 +12,20 @@ import java.util.List;
 
 @Service
 @Transactional
-public class RolService {
+public class ReservationService {
 
     @Autowired
-    private RolRepository repository;
+    private ReservationRepository repository;
 
-    public List<Rol> listAll() {
+    public List<Reservation> listAll() {
         return repository.findAll();
     }
 
-    public void save(Rol rol) {
-        repository.save(rol);
+    public void save(Reservation reservation) {
+        repository.save(reservation);
     }
 
-    public Rol get(int id) {
+    public Reservation get(int id) {
         return repository.findById(id).get();
     }
 

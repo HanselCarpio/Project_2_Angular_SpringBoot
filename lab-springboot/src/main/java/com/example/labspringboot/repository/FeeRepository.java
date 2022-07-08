@@ -1,10 +1,9 @@
 package com.example.labspringboot.repository;
 
-import com.example.labspringboot.domain.Student;
+import com.example.labspringboot.domain.Fee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Integer> {
-
+public interface FeeRepository extends JpaRepository<Fee, Integer> {
 }

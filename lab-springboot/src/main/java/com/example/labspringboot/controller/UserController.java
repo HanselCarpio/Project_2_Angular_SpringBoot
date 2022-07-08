@@ -1,7 +1,7 @@
 package com.example.labspringboot.controller;
 
 
-import com.example.labspringboot.domain.User;
+import com.example.labspringboot.domain.Users;
 import com.example.labspringboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,35 +19,35 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/users")
-    public List<User> list() {
+    public List<Users> list() {
         //¿reglas de negocio?
         //if...es admin
         return service.listAll();
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> get(@PathVariable Integer id) {
+    public ResponseEntity<Users> get(@PathVariable Integer id) {
         try {
-            User user = service.get(id);
-            return new ResponseEntity<User>(user, HttpStatus.OK);
+            Users user = service.get(id);
+            return new ResponseEntity<Users>(user, HttpStatus.OK);
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("/add")
-    public void add(User user) {
+    public void add(Users user) {
         //reglas de negocio??
         service.save(user);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<User> update(@RequestBody User user, @PathVariable Integer id) {
+    public ResponseEntity<Users> update(@RequestBody Users user, @PathVariable Integer id) {
         try {
             service.save(user);
-            return new ResponseEntity<User>(user, HttpStatus.OK);
+            return new ResponseEntity<Users>(user, HttpStatus.OK);
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
         }
     }
 
