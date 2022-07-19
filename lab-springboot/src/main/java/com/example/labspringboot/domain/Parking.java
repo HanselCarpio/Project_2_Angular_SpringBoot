@@ -1,12 +1,28 @@
 package com.example.labspringboot.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Parking")
+@NamedStoredProcedureQuery(name = "Parking.getAlLParkings", procedureName = "GetAllParkings")
+
+@NamedStoredProcedureQuery(name = "Parking.getParkingById",procedureName = "GetParking", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "@IDparking", type = Integer.class)
+})
+
+@NamedStoredProcedureQuery(name = "Parking.insertParking",procedureName = "InsertParking", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "ParkingName", type = String.class)
+})
+
+@NamedStoredProcedureQuery(name = "Parking.updateParking",procedureName = "UpdateParking", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDparking", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "ParkingName", type = String.class)
+})
+
+@NamedStoredProcedureQuery(name = "Parking.deleteParking",procedureName = "DeleteParking", parameters =
+        {@StoredProcedureParameter(mode = ParameterMode.IN, name = "IDparking", type = Integer.class)})
+
 public class Parking {
 
     @Id

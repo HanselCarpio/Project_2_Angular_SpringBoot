@@ -17,7 +17,7 @@ public class RolController {
     @Autowired
     private RolService service;
 
-    @GetMapping("/roles")
+    /*@GetMapping("/roles")
     public List<Rol> list() {
         //¿reglas de negocio?
         //if...es admin
@@ -54,6 +54,6 @@ public class RolController {
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Integer id) {
         service.delete(id);
-    }
+    }*/
 
 }

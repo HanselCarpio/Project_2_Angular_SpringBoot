@@ -16,6 +16,29 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
+    public List<?> getAllUsers() { return repository.getAllUsers();
+    }
+
+    //From the stored procedure
+    public Users getUserById(int id) { return repository.getUserById(id);
+    }
+
+    //From the stored procedure
+    public void insertUserSP(Users user) { repository.insertUserSP(user.getRol().getIdrol(), user.getName(), user.getDni(), user.getAge(),
+            user.getTelephone(), user.getEmail(), user.getClave());
+    }
+
+    //From the stored procedure
+    public void updateUserSP(Users user) { repository.updateUserSP(user.getIduser(), user.getRol().getIdrol(), user.getName(), user.getDni(), user.getAge(),
+            user.getTelephone(), user.getEmail(), user.getClave());
+    }
+
+    //From the stored procedure
+    public void deleteUserSP(int id) { repository.deleteUserSP(id);
+    }
+
+
+    /*
     public List<Users> listAll() {
         return repository.findAll();
     }
@@ -30,6 +53,6 @@ public class UserService {
 
     public void delete(int id) {
         repository.deleteById(id);
-    }
+    }*/
 
 }

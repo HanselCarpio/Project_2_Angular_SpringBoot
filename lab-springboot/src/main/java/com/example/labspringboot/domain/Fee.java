@@ -3,25 +3,49 @@ package com.example.labspringboot.domain;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Fee")
+@NamedStoredProcedureQuery(name = "Fee.getAlLFees", procedureName = "GetAllFees")
+
+@NamedStoredProcedureQuery(name = "Fee.getFeeById",procedureName = "GetFee", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "@IDfee", type = Integer.class)
+})
+
+@NamedStoredProcedureQuery(name = "Fee.insertFee",procedureName = "InsertFee", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDtypeVehicle", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDtime", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Price", type = Float.class)
+})
+
+@NamedStoredProcedureQuery(name = "Fee.updateFee",procedureName = "UpdateFee", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDfee", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDtypeVehicle", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDtime", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Price", type = Float.class)
+})
+
+@NamedStoredProcedureQuery(name = "Fee.deleteFee",procedureName = "DeleteFee", parameters =
+        {@StoredProcedureParameter(mode = ParameterMode.IN, name = "IDfee", type = Integer.class)})
+
+
 public class Fee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idfee;
     @ManyToOne
     @JoinColumn(name = "idtypevehicle")
-    private Typevehicle idtypevehicle;
+    private Typevehicle typevehicle;
     @ManyToOne
     @JoinColumn(name = "idtime")
-    private Times idtime;
+    private Times times;
     private float price;
 
     public Fee() {
     }
 
-    public Fee(int idfee, Typevehicle idtypevehicle, Times idtime, float price) {
+    public Fee(int idfee, Typevehicle typevehicle, Times times, float price) {
         this.setIdfee(idfee);
-        this.setIdtypevehicle(idtypevehicle);
-        this.setIdtime(idtime);
+        this.setTypevehicle(typevehicle);
+        this.setTimes(times);
         this.setPrice(price);
     }
 
@@ -33,20 +57,20 @@ public class Fee {
         this.idfee = idfee;
     }
 
-    public Typevehicle getIdtypevehicle() {
-        return idtypevehicle;
+    public Typevehicle getTypevehicle() {
+        return typevehicle;
     }
 
-    public void setIdtypevehicle(Typevehicle idtypevehicle) {
-        this.idtypevehicle = idtypevehicle;
+    public void setTypevehicle(Typevehicle typevehicle) {
+        this.typevehicle = typevehicle;
     }
 
-    public Times getIdtime() {
-        return idtime;
+    public Times getTimes() {
+        return times;
     }
 
-    public void setIdtime(Times idtime) {
-        this.idtime = idtime;
+    public void setTimes(Times times) {
+        this.times = times;
     }
 
     public float getPrice() {
@@ -61,8 +85,8 @@ public class Fee {
     public String toString() {
         return "Fee{" +
                 "idfee=" + idfee +
-                ", idypevehicle=" + idtypevehicle +
-                ", idtime=" + idtime +
+                ", idypevehicle=" + typevehicle +
+                ", idtime=" + times +
                 ", price=" + price +
                 '}';
     }

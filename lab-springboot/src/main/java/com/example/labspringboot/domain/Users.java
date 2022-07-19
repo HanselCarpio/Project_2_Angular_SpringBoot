@@ -3,6 +3,38 @@ package com.example.labspringboot.domain;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Users")
+@NamedStoredProcedureQuery(name = "Users.getAllUsers", procedureName = "GetAllUser")
+
+@NamedStoredProcedureQuery(name = "Users.getUserById",procedureName = "GetUser", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "@IDuser", type = Integer.class)
+})
+
+@NamedStoredProcedureQuery(name = "Users.insertUser",procedureName = "InsertUser", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDrol", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Name", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "DNI", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Age", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Telephone", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Email", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Clave", type = String.class)
+})
+
+@NamedStoredProcedureQuery(name = "Users.updateUser",procedureName = "UpdateUser", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDuser", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDrol", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Name", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "DNI", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Age", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Telephone", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Email", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Clave", type = String.class)
+})
+
+@NamedStoredProcedureQuery(name = "Users.deleteUser",procedureName = "DeleteUser", parameters =
+        {@StoredProcedureParameter(mode = ParameterMode.IN, name = "IDuser", type = Integer.class)})
+
+
 public class Users{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,24 +44,24 @@ public class Users{
     private int age;
     private String telephone;
     private String email;
-    private String password;
+    private String clave;
     private char state;
     @ManyToOne
-    @JoinColumn(name = "idrol")
-    private Rol idrol;
+    @JoinColumn(name = "IDrol")
+    private Rol rol;
 
     public Users() {
     }
 
-    public Users(int iduser, Rol idrol, String name, String dni, int age, String telephone, String email, String password, char state) {
+    public Users(int iduser, Rol rol, String name, String dni, int age, String telephone, String email, String clave, char state) {
         this.setIduser(iduser);
-        this.setIdrol(idrol);
+        this.setRol(rol);
         this.setName(name);
         this.setDni(dni);
         this.setAge(age);
         this.setTelephone(telephone);
         this.setEmail(email);
-        this.setPassword(password);
+        this.setClave(clave);
         this.setState(state);
     }
 
@@ -41,12 +73,12 @@ public class Users{
         this.iduser = iduser;
     }
 
-    public Rol getIdrol() {
-        return idrol;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setIdrol(Rol rol) {
-        this.idrol = idrol;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     public String getName() {
@@ -89,12 +121,12 @@ public class Users{
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getClave() {
+        return clave;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public char getState() {
@@ -114,9 +146,9 @@ public class Users{
                 ", age=" + age +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + clave + '\'' +
                 ", state=" + state +
-                ", rol=" + idrol +
+                ", rol=" + rol +
                 '}';
     }
 }

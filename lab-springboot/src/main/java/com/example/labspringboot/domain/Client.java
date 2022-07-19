@@ -3,6 +3,38 @@ package com.example.labspringboot.domain;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Client")
+@NamedStoredProcedureQuery(name = "Client.getAlLClient", procedureName = "GetAllClient")
+
+@NamedStoredProcedureQuery(name = "Client.getClientById",procedureName = "GetClient", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "@IDclient", type = Integer.class)
+})
+
+@NamedStoredProcedureQuery(name = "Client.insertClient",procedureName = "InsertClient", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDvehicle", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Name", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "DNI", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Age", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Telephone", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Email", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Clave", type = String.class)
+})
+
+@NamedStoredProcedureQuery(name = "Client.updateClient",procedureName = "UpdateClient", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDclient", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDvehicle", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Name", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "DNI", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Age", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Telephone", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Email", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Clave", type = String.class)
+})
+
+@NamedStoredProcedureQuery(name = "Client.deleteClient",procedureName = "DeleteClient", parameters =
+        {@StoredProcedureParameter(mode = ParameterMode.IN, name = "IDclient", type = Integer.class)})
+
+
 public class Client {
 
     @Id
@@ -10,31 +42,31 @@ public class Client {
     private int idclient;
     @ManyToOne
     @JoinColumn(name = "idvehicle")
-    private Vehicle idvehicle;
+    private Vehicle vehicle;
     private String name;
     private String dni;
     private int age;
     private String telephone;
     private String email;
-    private String password;
+    private String clave;
     @ManyToOne
     @JoinColumn(name = "idrol")
-    private Rol idrol;
+    private Rol rol;
     private char state;
 
     public Client() {
     }
 
-    public Client(int idclient, Vehicle idvehicle, String name, String dni, int age, String telephone, String email, String password, Rol idrol, char state) {
+    public Client(int idclient, Vehicle vehicle, String name, String dni, int age, String telephone, String email, String clave, Rol rol, char state) {
         this.idclient = idclient;
-        this.idvehicle = idvehicle;
+        this.vehicle = vehicle;
         this.name = name;
         this.dni = dni;
         this.age = age;
         this.telephone = telephone;
         this.email = email;
-        this.password = password;
-        this.idrol = idrol;
+        this.clave = clave;
+        this.rol = rol;
         this.state = state;
     }
 
@@ -46,12 +78,12 @@ public class Client {
         this.idclient = idclient;
     }
 
-    public Vehicle getIdvehicle() {
-        return idvehicle;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setIdvehicle(Vehicle idvehicle) {
-        this.idvehicle = idvehicle;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public String getName() {
@@ -94,20 +126,20 @@ public class Client {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getClave() {
+        return clave;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
-    public Rol getIdrol() {
-        return idrol;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setIdrol(Rol idrol) {
-        this.idrol = idrol;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     public char getState() {
@@ -122,14 +154,14 @@ public class Client {
     public String toString() {
         return "Client{" +
                 "idclient=" + idclient +
-                ", idvehicle=" + idvehicle +
+                ", idvehicle=" + vehicle +
                 ", name='" + name + '\'' +
                 ", dni='" + dni + '\'' +
                 ", age=" + age +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", idrol=" + idrol +
+                ", password='" + clave + '\'' +
+                ", idrol=" + rol +
                 ", state=" + state +
                 '}';
     }

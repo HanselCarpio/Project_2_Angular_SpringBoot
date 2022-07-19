@@ -1,6 +1,7 @@
 package com.example.labspringboot.service;
 
 import com.example.labspringboot.domain.Bill;
+import com.example.labspringboot.domain.Client;
 import com.example.labspringboot.domain.Fee;
 import com.example.labspringboot.repository.BillRepository;
 import com.example.labspringboot.repository.FeeRepository;
@@ -17,7 +18,28 @@ public class FeeService {
     @Autowired
     private FeeRepository repository;
 
-    public List<Fee> listAll() {
+    public List<?> getAllFees() { return repository.getAllFees();
+    }
+
+    //From the stored procedure
+    public Fee getFeeById(int id) { return repository.getFeeById(id);
+    }
+
+    //From the stored procedure
+    public void insertFeeSP(Fee fee) { repository.insertFeeSP(fee.getTypevehicle().getIdtype(), fee.getTimes().getIdtimes(),
+            fee.getPrice());
+    }
+
+    //From the stored procedure
+    public void updateFeeSP(Fee fee) { repository.updateFeeSP(fee.getIdfee(), fee.getTypevehicle().getIdtype(),
+            fee.getTimes().getIdtimes(), fee.getPrice());
+    }
+
+    //From the stored procedure
+    public void deleteFeeSP(int id) { repository.deleteFeeSP(id);
+    }
+
+    /*public List<Fee> listAll() {
         return repository.findAll();
     }
 
@@ -31,6 +53,6 @@ public class FeeService {
 
     public void delete(int id) {
         repository.deleteById(id);
-    }
+    }*/
 
 }

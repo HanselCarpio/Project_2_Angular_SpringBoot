@@ -1,5 +1,6 @@
 package com.example.labspringboot.controller;
 
+import com.example.labspringboot.domain.Fee;
 import com.example.labspringboot.domain.Parking;
 import com.example.labspringboot.domain.Rol;
 import com.example.labspringboot.service.ParkingService;
@@ -19,7 +20,33 @@ public class ParkingController {
     @Autowired
     private ParkingService service;
 
-    @GetMapping("/parkings")
+    @GetMapping("/getAllParkings")
+    public List<?> getAllParkings() { return service.getAllParkings();
+    }
+    @GetMapping("/getParking/{id}")
+    public ResponseEntity<Parking> getParkingById(@PathVariable Integer id){ try {
+        Parking parking = service.getParkingById(id);
+        return new ResponseEntity<Parking>(parking, HttpStatus.OK);
+    }catch(NoSuchElementException e){
+        return new ResponseEntity<Parking>(HttpStatus.NOT_FOUND);
+    }
+
+    }
+
+    @PostMapping("/saveParking")
+    public ResponseEntity<?> insertParking(@RequestBody Parking parking) { service.insertParkingSP(parking);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+
+    @PostMapping("/updateFee")
+    public void updateParking(@RequestBody Parking parking){ service.updateParkingSP(parking);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteParking(@PathVariable int id) { service.deleteParkingSP(id);
+    }
+
+    /*@GetMapping("/parkings")
     public List<Parking> list() {
         //¿reglas de negocio?
         //if...es admin
@@ -55,5 +82,5 @@ public class ParkingController {
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Integer id) {
         service.delete(id);
-    }
+    }*/
 }

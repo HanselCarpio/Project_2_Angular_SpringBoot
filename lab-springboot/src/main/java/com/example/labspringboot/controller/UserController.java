@@ -18,7 +18,33 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @GetMapping("/users")
+    @GetMapping("/getAllUsers")
+    public List<?> getAllUsers() { return service.getAllUsers();
+    }
+    @GetMapping("/getUser/{id}")
+    public ResponseEntity<Users> getUserById(@PathVariable Integer id){ try {
+        Users user = service.getUserById(id);
+        return new ResponseEntity<Users>(user, HttpStatus.OK);
+    }catch(NoSuchElementException e){
+        return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
+    }
+
+    }
+
+    @PostMapping("/saveUser")
+    public ResponseEntity<?> insertUser(@RequestBody Users user) { service.insertUserSP(user);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+
+    @PostMapping("/updateUser")
+    public void updateUser(@RequestBody Users user){ service.updateUserSP(user);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteUser(@PathVariable int id) { service.deleteUserSP(id);
+    }
+
+    /*@GetMapping("/users")
     public List<Users> list() {
         //¿reglas de negocio?
         //if...es admin
@@ -41,6 +67,7 @@ public class UserController {
         service.save(user);
     }
 
+
     @PutMapping("/update/{id}")
     public ResponseEntity<Users> update(@RequestBody Users user, @PathVariable Integer id) {
         try {
@@ -54,5 +81,5 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Integer id) {
         service.delete(id);
-    }
+    }*/
 }

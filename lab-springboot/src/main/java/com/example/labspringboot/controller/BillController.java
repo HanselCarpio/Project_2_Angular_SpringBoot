@@ -19,6 +19,15 @@ public class BillController {
     @Autowired
     private BillService service;
 
+    @GetMapping("/getAllBills")
+    public List<Bill> getAllBills() { return service.getAllBills();
+    }
+
+    @PostMapping("/insertBill/{id}")
+    public ResponseEntity<?> insertBill(@RequestBody Bill bill, @PathVariable Integer id) { service.insertBillSP(id, bill);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+    /*
     @GetMapping("/bills")
     public List<Bill> list() {
         //¿reglas de negocio?
@@ -56,5 +65,6 @@ public class BillController {
     public void delete(@PathVariable Integer id) {
         service.delete(id);
     }
+    */
 
 }
