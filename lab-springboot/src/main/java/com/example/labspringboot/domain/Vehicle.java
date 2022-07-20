@@ -3,6 +3,38 @@ package com.example.labspringboot.domain;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Vehicle")
+@NamedStoredProcedureQuery(name = "Vehicle.getAllVehicles", procedureName = "GetAllVehicle")
+
+@NamedStoredProcedureQuery(name = "Users.getVehicleById",procedureName = "GetVehicle", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "@IDvehicle", type = Integer.class)
+})
+
+@NamedStoredProcedureQuery(name = "Vehicle.insertVehicle",procedureName = "InsertVehicle", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDtype", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Brand", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Model", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Color", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Year", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Register", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Description", type = String.class)
+})
+
+@NamedStoredProcedureQuery(name = "Vehicle.updateVehicle",procedureName = "UpdateVehicle", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDvehicle", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDtype", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Brand", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Model", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Color", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Year", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Register", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Description", type = String.class)
+})
+
+@NamedStoredProcedureQuery(name = "Vehicle.deleteVehicle",procedureName = "DeleteVehicle", parameters =
+        {@StoredProcedureParameter(mode = ParameterMode.IN, name = "IDvehicle", type = Integer.class)})
+
+
 public class Vehicle {
 
     @Id
@@ -10,7 +42,7 @@ public class Vehicle {
     private int idvehicle;
     @ManyToOne
     @JoinColumn(name = "idtype")
-    private Typevehicle idtype;
+    private Typevehicle type;
     private String brand;
     private String model;
     private String color;
@@ -22,9 +54,9 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(int idvehicle, Typevehicle idtype, String brand, String model, String color, int year, String register, String description, char state) {
+    public Vehicle(int idvehicle, Typevehicle type, String brand, String model, String color, int year, String register, String description, char state) {
         this.setIdvehicle(idvehicle);
-        this.setIdtype(idtype);
+        this.setType(type);
         this.setBrand(brand);
         this.setModel(model);
         this.setColor(color);
@@ -42,12 +74,12 @@ public class Vehicle {
         this.idvehicle = idvehicle;
     }
 
-    public Typevehicle getIdtype() {
-        return idtype;
+    public Typevehicle getType() {
+        return type;
     }
 
-    public void setIdtype(Typevehicle idtype) {
-        this.idtype = idtype;
+    public void setType(Typevehicle type) {
+        this.type = type;
     }
 
     public String getBrand() {
@@ -110,7 +142,7 @@ public class Vehicle {
     public String toString() {
         return "Vehicle{" +
                 "idvehicle=" + idvehicle +
-                ", idtype=" + idtype +
+                ", idtype=" + type +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", color='" + color + '\'' +

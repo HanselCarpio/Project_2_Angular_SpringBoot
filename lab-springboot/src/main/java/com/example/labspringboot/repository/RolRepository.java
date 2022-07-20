@@ -19,12 +19,13 @@ public interface RolRepository extends JpaRepository<Rol, Integer> {
     @Query(value = "{ call GetRol(:IDrol)}", nativeQuery = true)
     Rol getRol(@Param("IDrol") Integer id);
 
-    @Procedure(name = "Rol.insertRol") void insertRolSP(@Param("Name") String name,
+    @Procedure(name = "Rol.insertRol") void insertRol(@Param("Name") String name,
                                                         @Param("Authority") int authority);
 
-    @Procedure(name = "Users.updateRol")void updateRolSP(@Param("IDrol") int idrol, @Param("Name") String name,@Param("Authority") int authority);
+    @Procedure(name = "Users.updateRol")void updateRol(@Param("IDrol") int idrol,
+                                                         @Param("Authority") int authority);
 
-    @Procedure(name = "Users.deleteUser") void deleteRolSP(@Param("IDrol") int id);
+    @Procedure(name = "Users.deleteUser") void deleteRol(@Param("IDrol") int id);
 
 
 }

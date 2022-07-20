@@ -20,19 +20,19 @@ public class RolService {
     }
 
     //From the stored procedure
-    public Rol getRol(int id) { return repository.getRol(id);
+    public Rol getRolById(int id) { return repository.getRol(id);
     }
 
     //From the stored procedure
-    public void insertRolSP(Rol rol) { repository.insertRolSP(rol.getName(), rol.getAuthority());
+    public void insertRol(Rol rol) { repository.insertRol(rol.getName(), rol.getAuthority());
     }
 
     //From the stored procedure
-    public void updateRolSP(Rol rol) { repository.updateRolSP(rol.getIdrol(), rol.getName(), rol.getAuthority());
+    public void updateRol(Rol rol) { repository.updateRol(rol.getIdrol(), rol.getAuthority());
     }
 
     //From the stored procedure
-    public void deleteRolSP(int id) { repository.deleteRolSP(id);
+    public void deleteRol(int id) { repository.deleteRol(id);
     }
 
     /*

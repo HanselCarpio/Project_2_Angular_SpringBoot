@@ -1,5 +1,6 @@
 package com.example.labspringboot.controller;
 
+import com.example.labspringboot.domain.Fee;
 import com.example.labspringboot.domain.Rol;
 import com.example.labspringboot.service.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,32 @@ public class RolController {
 
     @Autowired
     private RolService service;
+
+    @GetMapping("/getAllRoles")
+    public List<?> getAllRoles() { return service.getAllRoles();
+    }
+    @GetMapping("/getRol/{id}")
+    public ResponseEntity<Rol> getRolById(@PathVariable Integer id){ try {
+        Rol rol = service.getRolById(id);
+        return new ResponseEntity<Rol>(rol, HttpStatus.OK);
+    }catch(NoSuchElementException e){
+        return new ResponseEntity<Rol>(HttpStatus.NOT_FOUND);
+    }
+
+    }
+
+    @PostMapping("/saveRol")
+    public ResponseEntity<?> insertRol(@RequestBody Rol rol) { service.insertRol(rol);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+
+    @PostMapping("/updateRol")
+    public void updateRol(@RequestBody Rol rol){ service.updateRol(rol);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteRol(@PathVariable int id) { service.deleteRol(id);
+    }
 
     /*@GetMapping("/roles")
     public List<Rol> list() {

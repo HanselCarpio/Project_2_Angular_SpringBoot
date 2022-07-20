@@ -1,5 +1,6 @@
 package com.example.labspringboot.controller;
 
+import com.example.labspringboot.domain.Users;
 import com.example.labspringboot.domain.Vehicle;
 import com.example.labspringboot.service.UserService;
 import com.example.labspringboot.service.VehicleService;
@@ -19,7 +20,32 @@ public class VehicleController {
     @Autowired
     private VehicleService service;
 
-    @GetMapping("/vehicles")
+    @GetMapping("/getAllVehicles")
+    public List<?> getAllVehicles() { return service.getAllVehicles();
+    }
+    @GetMapping("/getVehicle/{id}")
+    public ResponseEntity<Vehicle> getVehicleById(@PathVariable Integer id){ try {
+        Vehicle vehicle = service.getVehicleById(id);
+        return new ResponseEntity<Vehicle>(vehicle, HttpStatus.OK);
+    }catch(NoSuchElementException e){
+        return new ResponseEntity<Vehicle>(HttpStatus.NOT_FOUND);
+    }
+
+    }
+
+    @PostMapping("/saveVehicle")
+    public ResponseEntity<?> insertVehicle(@RequestBody Vehicle vehicle) { service.insertVehicleSP(vehicle);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+
+    @PostMapping("/updateVehicle")
+    public void updateVehicle(@RequestBody Vehicle vehicle){ service.updateVehicleSP(vehicle);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteUser(@PathVariable int id) { service.deleteVehicleSP(id);
+    }
+    /*@GetMapping("/vehicles")
     public List<Vehicle> list() {
         //¿reglas de negocio?
         //if...es admin
@@ -55,6 +81,6 @@ public class VehicleController {
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Integer id) {
         service.delete(id);
-    }
+    }*/
 
 }

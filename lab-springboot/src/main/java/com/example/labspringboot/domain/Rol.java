@@ -2,6 +2,28 @@ package com.example.labspringboot.domain;
 
 import javax.persistence.*;
 @Entity
+@Table(name = "Rol")
+@NamedStoredProcedureQuery(name = "Rol.getAllRoles", procedureName = "GetAllRoles")
+
+@NamedStoredProcedureQuery(name = "Rol.getRolById",procedureName = "GetRol", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "@IDrol", type = Integer.class)
+})
+
+@NamedStoredProcedureQuery(name = "rol.insertRol", procedureName = "InsertRol", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Name", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Authority", type = Integer.class)
+})
+
+@NamedStoredProcedureQuery(name = "Rol.updateRol",procedureName = "UpdateRol", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDrol", type = Integer.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Name", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "Authority", type = Integer.class)
+})
+
+@NamedStoredProcedureQuery(name = "Rol.deleteRol",procedureName = "DeleteRol", parameters =
+        {@StoredProcedureParameter(mode = ParameterMode.IN, name = "IDrol", type = Integer.class)})
+
+
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
