@@ -31,6 +31,16 @@ public class UserController {
 
     }
 
+    @GetMapping("/login/{email}")
+    public ResponseEntity<Users> logIn(String email){ try {
+        Users user = service.logIn(email);
+        return new ResponseEntity<Users>(user, HttpStatus.OK);
+    }catch(NoSuchElementException e){
+        return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
+    }
+
+    }
+
     @PostMapping("/saveUser")
     public ResponseEntity<?> insertUser(@RequestBody Users user) { service.insertUserSP(user);
         return new ResponseEntity(HttpStatus.CREATED);

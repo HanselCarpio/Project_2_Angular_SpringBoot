@@ -10,6 +10,10 @@ import javax.persistence.*;
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "@IDuser", type = Integer.class)
 })
 
+@NamedStoredProcedureQuery(name = "Users.logIn",procedureName = "LogIn", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "@Email", type = String.class)
+})
+
 @NamedStoredProcedureQuery(name = "Users.insertUser",procedureName = "InsertUser", parameters = {
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "IDrol", type = Integer.class),
         @StoredProcedureParameter(mode = ParameterMode.IN, name = "Name", type = String.class),

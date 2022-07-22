@@ -18,6 +18,8 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 
     @Query(value = "{ call GetUser(:IDuser)}", nativeQuery = true) Users getUserById(@Param("IDuser") Integer id);
 
+    @Query(value = "{ call logIn(:Email)}", nativeQuery = true) Users logIn(@Param("Email") String email);
+
     @Procedure(name = "Users.insertUser") void insertUserSP(@Param("IDrol") int idRol,
                                                             @Param("Name") String name,
                                                             @Param("DNI") String dni,
