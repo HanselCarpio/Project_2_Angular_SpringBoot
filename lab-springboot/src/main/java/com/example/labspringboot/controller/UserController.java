@@ -13,13 +13,14 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(path = "/api/user")
+@CrossOrigin
 public class UserController {
 
     @Autowired
     private UserService service;
 
     @GetMapping("/getAllUsers")
-    public List<?> getAllUsers() { return service.getAllUsers();
+    public List<Users> getAllUsers() { return service.getAllUsers();
     }
     @GetMapping("/getUser/{id}")
     public ResponseEntity<Users> getUserById(@PathVariable Integer id){ try {
