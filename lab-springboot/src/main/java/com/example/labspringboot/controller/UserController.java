@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping(path = "/api/user")
-@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -49,7 +49,8 @@ public class UserController {
 
 
     @PostMapping("/updateUser")
-    public void updateUser(@RequestBody Users user){ service.updateUserSP(user);
+    public void updateUser(@RequestBody Users user){
+        service.updateUserSP(user);
     }
     @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable int id) { service.deleteUserSP(id);
