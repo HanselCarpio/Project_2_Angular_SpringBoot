@@ -73,7 +73,7 @@ public class Users{
         return iduser;
     }
 
-    public void setIduser(int idUser) {
+    public void setIduser(int iduser) {
         this.iduser = iduser;
     }
 

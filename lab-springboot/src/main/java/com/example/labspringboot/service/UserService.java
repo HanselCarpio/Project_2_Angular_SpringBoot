@@ -32,8 +32,8 @@ public class UserService {
     }
 
     //From the stored procedure
-    public void updateUserSP(Users user) { repository.updateUserSP(user.getIduser(), user.getRol().getIdrol(), user.getName(), user.getDni(), user.getAge(),
-            user.getTelephone(), user.getEmail(), user.getClave());
+    public void updateUserSP(Users user) { repository.updateUserSP(user.getIduser(), user.getRol().getIdrol(), user.getName(),
+            user.getDni(), user.getAge(), user.getTelephone(), user.getEmail(), user.getClave());
     }
 
     //From the stored procedure

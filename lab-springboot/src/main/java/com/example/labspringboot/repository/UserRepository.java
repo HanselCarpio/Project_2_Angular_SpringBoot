@@ -28,14 +28,14 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
                                                             @Param("Email") String email,
                                                             @Param("Clave") String clave );
 
-    @Procedure(name = "Users.updateUser") void updateUserSP(@Param("IDuser") int idUser,
+    @Procedure(name = "Users.updateUser") void updateUserSP(@Param("IDuser") int iduser,
                                                             @Param("IDrol") int idRol,
                                                             @Param("Name") String name,
                                                             @Param("DNI") String dni,
                                                             @Param("Age") int age,
                                                             @Param("Telephone") String telephone,
                                                             @Param("Email") String email,
-                                                            @Param("Clave") String clave );
+                                                            @Param("Clave") String clave);
 
     @Procedure(name = "Users.deleteUser") void deleteUserSP(@Param("IDuser") int id);
 
