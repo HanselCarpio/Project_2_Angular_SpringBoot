@@ -17,7 +17,7 @@ public class ParkingslotService {
     @Autowired
     private ParkingslotRepository repository;
 
-    public List<?> getAllParkingslots() { return repository.getAllParkingslots();
+    public List<Parkingslot> getAllParkingslots() { return repository.getAllParkingslots();
     }
 
     //From the stored procedure

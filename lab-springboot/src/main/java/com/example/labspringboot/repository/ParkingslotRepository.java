@@ -14,7 +14,7 @@ import java.util.List;
 public interface ParkingslotRepository extends JpaRepository<Parkingslot, Integer> {
 
     @Query(value = "GetAllParkingslots", nativeQuery = true)
-    List<?> getAllParkingslots();
+    List<Parkingslot> getAllParkingslots();
 
     @Query(value = "{ call GetParkingslot(:IDparkingSlot)}", nativeQuery = true)
     Parkingslot getParkingslotById(@Param("IDparkingSlot") Integer id);

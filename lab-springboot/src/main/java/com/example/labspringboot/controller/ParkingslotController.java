@@ -15,13 +15,14 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(path = "/api/parkingslot")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class ParkingslotController {
 
     @Autowired
     private ParkingslotService service;
 
     @GetMapping("/getAllParkingslots")
-    public List<?> getAllParkingslots() { return service.getAllParkingslots();
+    public List<Parkingslot> getAllParkingslots() { return service.getAllParkingslots();
     }
     @GetMapping("/getParkingslot/{id}")
     public ResponseEntity<Parkingslot> getParkingslotById(@PathVariable Integer id){ try {

@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(path = "/api/rol")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200/")
 public class RolController {
 
     @Autowired

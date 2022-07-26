@@ -23,7 +23,8 @@ public class UserService {
     public Users getUserById(int id) { return repository.getUserById(id);
     }
 
-    public Users logIn(String email) { return repository.logIn(email);
+    public Users logIn(String email) {
+        return repository.logIn(email);
     }
 
     //From the stored procedure

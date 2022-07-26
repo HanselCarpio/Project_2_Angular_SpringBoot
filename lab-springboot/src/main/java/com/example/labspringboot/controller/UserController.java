@@ -32,8 +32,8 @@ public class UserController {
 
     }
 
-    @GetMapping("/login/{email}")
-    public ResponseEntity<Users> logIn(String email){ try {
+    @GetMapping("/login/")
+    public ResponseEntity<Users> logIn(@RequestBody String email){ try {
         Users user = service.logIn(email);
         return new ResponseEntity<Users>(user, HttpStatus.OK);
     }catch(NoSuchElementException e){
