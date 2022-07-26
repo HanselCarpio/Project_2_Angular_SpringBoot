@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(path = "/api/parkingslot")
+@CrossOrigin
 public class ParkingslotController {
 
     @Autowired
