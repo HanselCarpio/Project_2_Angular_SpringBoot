@@ -11,14 +11,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<Users, String> {
+public interface UserRepository extends JpaRepository<Users, Integer> {
 
     @Query(value = "GetAllUsers", nativeQuery = true)
     List<Users> getAllUsers();
 
     @Query(value = "{ call GetUser(:IDuser)}", nativeQuery = true) Users getUserById(@Param("IDuser") Integer id);
 
-    @Procedure(name = "Users.logIn") Users logIn(@Param("Email") String email);
+    @Query(value = "{ call logIn(:Email)}", nativeQuery = true) Users logIn(@Param("Email") String email);
 
     @Procedure(name = "Users.insertUser") void insertUserSP(@Param("IDrol") int idRol,
                                                             @Param("Name") String name,
