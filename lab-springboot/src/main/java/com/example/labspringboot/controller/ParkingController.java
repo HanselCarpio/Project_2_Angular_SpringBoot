@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(path = "/api/parking")
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin
 public class ParkingController {
 
     @Autowired
@@ -40,7 +40,7 @@ public class ParkingController {
     }
 
 
-    @PostMapping("/updateParking")
+    @PostMapping("/updateFee")
     public void updateParking(@RequestBody Parking parking){ service.updateParkingSP(parking);
     }
     @DeleteMapping("/delete/{id}")

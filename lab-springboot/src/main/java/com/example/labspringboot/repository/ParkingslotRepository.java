@@ -20,7 +20,7 @@ public interface ParkingslotRepository extends JpaRepository<Parkingslot, Intege
     Parkingslot getParkingslotById(@Param("IDparkingSlot") Integer id);
 
     @Query(value = "{ call GetSlotsByParking(:IDparking)}", nativeQuery = true)
-    List<Parkingslot> getSlotsByParking(@Param("IDparking") Integer id);
+    List<Parkingslot>   getSlotsByParking(@Param("IDparking") Integer id);
 
     @Procedure(name = "Parkingslot.getParkingslotInfo") List<?> getParkingslotInfo(@Param("IDparkingSlot") Integer idparkingslot,
                                                                                  @Param("IDtime") String time);
