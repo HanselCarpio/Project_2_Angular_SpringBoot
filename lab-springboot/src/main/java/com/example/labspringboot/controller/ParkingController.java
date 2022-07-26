@@ -40,7 +40,7 @@ public class ParkingController {
     }
 
 
-    @PostMapping("/updateFee")
+    @PostMapping("/updateParking")
     public void updateParking(@RequestBody Parking parking){ service.updateParkingSP(parking);
     }
     @DeleteMapping("/delete/{id}")
