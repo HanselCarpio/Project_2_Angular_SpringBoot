@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(path = "/api/vehicle")
+@CrossOrigin
 public class VehicleController {
 
     @Autowired
