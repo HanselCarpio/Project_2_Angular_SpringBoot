@@ -14,7 +14,7 @@ import java.util.List;
 public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
     @Query(value = "GetAllVehicles", nativeQuery = true)
-    List<?> getAllVehicles();
+    List<Vehicle> getAllVehicles();
 
     @Query(value = "{ call GetVehicle(:IDvehicle)}", nativeQuery = true)
     Vehicle getVehicleById(@Param("IDvehicle") Integer id);
