@@ -17,7 +17,7 @@ public class VehicleService {
     @Autowired
     private VehicleRepository repository;
 
-    public List<?> getAllVehicles() { return repository.getAllVehicles();
+    public List<Vehicle> getAllVehicles() { return repository.getAllVehicles();
     }
 
     //From the stored procedure

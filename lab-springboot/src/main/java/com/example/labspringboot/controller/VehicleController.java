@@ -22,7 +22,7 @@ public class VehicleController {
     private VehicleService service;
 
     @GetMapping("/getAllVehicles")
-    public List<?> getAllVehicles() { return service.getAllVehicles();
+    public List<Vehicle> getAllVehicles() { return service.getAllVehicles();
     }
     @GetMapping("/getVehicle/{id}")
     public ResponseEntity<Vehicle> getVehicleById(@PathVariable Integer id) {
