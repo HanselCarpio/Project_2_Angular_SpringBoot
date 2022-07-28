@@ -24,7 +24,8 @@ public class VehicleService {
     public Vehicle getVehicleById(int id) { return repository.getVehicleById(id);
     }
 
-    public List<Vehicle> getVehicleByClient(int id) { return repository.getVehicleByClient(id);
+    public Vehicle getVehicleByClient(int id)
+    { return repository.getVehicleByClient(id);
     }
 
     //From the stored procedure

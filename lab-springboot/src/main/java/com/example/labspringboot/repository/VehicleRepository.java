@@ -20,7 +20,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
     Vehicle getVehicleById(@Param("IDvehicle") Integer id);
 
     @Query(value = "{ call GetVehicleByClient(:IDclient)}", nativeQuery = true)
-    List<Vehicle> getVehicleByClient(@Param("IDclient") Integer id);
+    Vehicle getVehicleByClient(@Param("IDclient") Integer id);
 
     @Procedure(name = "Vehicle.insertVehicle") void insertVehicleSP(@Param("IDtype") int idType ,
                                                                     @Param("Brand") String brand,
