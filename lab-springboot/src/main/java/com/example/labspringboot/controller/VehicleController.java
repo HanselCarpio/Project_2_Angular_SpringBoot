@@ -35,8 +35,13 @@ public class VehicleController {
     }
 
     @GetMapping("/getVehicleByClient/{id}")
-    public List<Vehicle> getVehicleByClient(@PathVariable Integer id){
-        return service.getVehicleByClient(id);
+    public ResponseEntity<Vehicle> getVehicleByClient(@PathVariable Integer id){
+        try {
+            Vehicle vehicle = service.getVehicleByClient(id);
+            return new ResponseEntity<Vehicle>(vehicle, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<Vehicle>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/saveVehicle")
